@@ -1,0 +1,9 @@
+JNI_Helper  => %HOME%/ghidra_scripts
+jni.h.gdt   => %HOME%/ghidra_scripts/data/
+
+extract_jni => Archivo a ejecutar para compilar el .json interprete (necesario) en GHidra/IDA. Usar "-o FILE.JSON" para el output.
+$< Si no existe data, crear la carpeta
+
+
+Respositorio original: https://github.com/evilpan/jni_helper
+Este es un extracto necesario identico del mismo.
