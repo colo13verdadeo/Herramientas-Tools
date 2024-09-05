@@ -1,3 +1,4 @@
+##Conectarse al FTP de forma anonima [solo si esta activado]
 #!/bin/bash
 if [ $# -eq 0 ]; then
 	echo "Necesitas la IP"
