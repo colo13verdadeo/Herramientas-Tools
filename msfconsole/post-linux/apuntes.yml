@@ -1,0 +1,2 @@
+Leer distribucion de linux nombre y version:
+  cat /etc/*release

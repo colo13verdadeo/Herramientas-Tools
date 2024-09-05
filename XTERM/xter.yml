@@ -1,0 +1,4 @@
+script /dev/null -c bash
+control + z
+stty raw -echo; fg
+reset xterm

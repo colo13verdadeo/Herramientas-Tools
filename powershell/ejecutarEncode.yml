@@ -1,0 +1,3 @@
+Encode texto to UTF16 (2000), luego pasarlo a base64.
+
+powershell -e {{codigo}}
