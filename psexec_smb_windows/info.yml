@@ -1,0 +1,1 @@
+usar msfconsole y buscar psexec, este con credencial SMB valida podra crear un RCE.

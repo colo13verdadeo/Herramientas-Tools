@@ -1,0 +1,53 @@
+#!/bin/bash
+
+# Validar que se ingresen los tres argumentos
+if [ $# -lt 3 ]; then
+  echo "Faltan $(expr 3 - $#) argumentos"
+  echo "Uso: $0 <IP> <usuario> <contraseña>"
+  exit 1
+fi
+
+# Asignar argumentos a variables
+IP="$1"
+USUARIO="$2"
+CONTRASENA="$3"
+
+# Inicializar variable de resultado
+RESULTADO="OK"
+
+# Ejecutar el comando smb y mostrar la salida en tiempo real
+nxc smb "$IP" -u "$USUARIO" -p "$CONTRASENA" --users 2>&1 | while IFS= read -r line; do
+  echo "$line"  # Mostrar cada línea en tiempo real
+  if echo "$line" | grep -q "STATUS_LOGON_FAILURE"; then
+    RESULTADO="KO"
+    break  # Salir del bucle si se detecta el error
+  fi
+
+  # Extraer los nombres (asumiendo que están en la posición 4 de cada línea)
+  # El nombre está después del tercer espacio, por lo que lo extraemos con awk
+  NOMBRE=$(echo "$line" | awk '{print $5}')
+
+  # Verificar que se extrajo un nombre
+  if [ -n "$NOMBRE" ]; then
+    # Almacenar los nombres en la variable salida1
+    salida1+="$NOMBRE "
+  fi
+done
+
+# Mostrar "hola" y el OUTPUT completo (que ahora es la salida del comando)
+echo "hola"
+echo "$salida1"  # Mostrar todos los nombres extraídos
+
+# Iterar y mostrar los nombres individualmente
+for nombre in $salida1; do
+  echo "$nombre"
+done
+
+# Imprimir el resultado final
+echo "$RESULTADO"
+if [ "$RESULTADO" == "KO" ]; then
+  exit 1
+else
+  exit 0
+fi
+
