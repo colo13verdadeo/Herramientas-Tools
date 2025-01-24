@@ -1,0 +1,2 @@
+Buscar contenido con grep:
+  grep -rnw /usr -e "TEXTO A BUSCAR"

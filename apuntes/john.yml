@@ -1,0 +1,6 @@
+Para crackear contraseñas NTLM:
+  john --format=NT archivoCONhashes.txt
+    Si no funciona añadir:
+      *--wordlist=path
+Usar hashdump de MSFCONSOLE:
+  linux/gather/hashdump

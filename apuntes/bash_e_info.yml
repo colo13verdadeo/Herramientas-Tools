@@ -1,0 +1,15 @@
+Intentar tener bash root:
+  /bin/bash -i
+
+Leer mensaje de bienvenida por si hay informacion interesante: (chat gpt)
+  cat /etc/issue
+
+Leer informacion general interesante:
+  uname -a
+Leer ENVs:
+  env
+Leer informacion de CPU:
+  lscpu
+Ver ram:
+  free -h //Puede fallar si no hay utilidad instalada.
+
